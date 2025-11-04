@@ -42,6 +42,9 @@ import {
   estimateTokens,
 } from '@/lib/db/context-loader'
 
+// Force dynamic rendering to prevent build-time evaluation
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     logger.info('Running conversation and message operations tests...')

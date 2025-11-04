@@ -28,6 +28,9 @@ import {
   DEFAULT_ACCOUNT_SETTINGS,
 } from '@/lib/db/account-settings'
 
+// Force dynamic rendering to prevent build-time evaluation
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     logger.info('Running account operations tests...')

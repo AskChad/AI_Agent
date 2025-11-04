@@ -10,6 +10,9 @@ import { createClient } from '@/lib/supabase/server'
 import { successResponse, errorResponse } from '@/lib/api-response'
 import { logger } from '@/lib/logger'
 
+// Force dynamic rendering to prevent build-time evaluation
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     logger.info('Testing database connection...')
