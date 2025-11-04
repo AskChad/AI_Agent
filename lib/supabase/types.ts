@@ -130,10 +130,15 @@ export interface Message {
   function_call: any | null
   function_call_result: any | null
 
+  // Vector embedding (optional - may be stored in separate table)
+  embedding: number[] | null
+
   // Metadata
+  metadata: any | null
   tokens_used: number | null
   model_used: string | null
   created_at: string
+  updated_at: string
 }
 
 export interface ConversationEmbedding {
