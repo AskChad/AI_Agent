@@ -1,0 +1,46 @@
+# Add these to your .gitignore
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Credentials (NEVER COMMIT)
+Resources/CONNECTIONS.md
+PROJECT_CONNECTIONS.md
+**/credentials.json
+**/*-credentials.json
+
+# Supabase local
+.supabase/
+
+# Testing
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Backup files
+*.backup
+.backups/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

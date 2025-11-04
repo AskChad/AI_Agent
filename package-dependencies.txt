@@ -1,0 +1,23 @@
+# Core Dependencies to Install
+# Run: npm install <package-name>
+
+## AI & Database
+@supabase/supabase-js
+openai
+@anthropic-ai/sdk
+zod
+
+## Development
+@types/node
+jest
+@playwright/test
+@types/jest
+ts-node
+
+## Utilities (optional for Phase 1, can add later)
+date-fns
+uuid
+
+## Testing
+@testing-library/react
+@testing-library/jest-dom
