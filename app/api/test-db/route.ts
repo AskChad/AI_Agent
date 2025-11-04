@@ -32,13 +32,17 @@ export async function GET() {
       )
     }
 
-    // Test 2: List all tables
-    const { data: tables, error: tablesError } = await supabase
-      .rpc('_list_tables')
-      .catch(() => ({
-        data: null,
-        error: null, // Ignore if function doesn't exist
-      }))
+    // Test 2: List all tables (optional - may not exist in all Supabase instances)
+    let tables = null
+    let tablesError = null
+    try {
+      const response = await supabase.rpc('_list_tables')
+      tables = response.data
+      tablesError = response.error
+    } catch (err) {
+      // Ignore if function doesn't exist
+      tablesError = null
+    }
 
     // Test 3: Create a test account
     const testAccountName = `Test Account ${Date.now()}`
