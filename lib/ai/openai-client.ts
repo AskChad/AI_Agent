@@ -9,10 +9,35 @@ import { config } from '@/lib/config'
 import { logger } from '@/lib/logger'
 
 /**
- * OpenAI client instance
+ * Cached OpenAI client instance
  */
-export const openai = new OpenAI({
-  apiKey: config.ai.openai.apiKey,
+let _openaiClient: OpenAI | null = null
+
+/**
+ * Get OpenAI client instance (lazy initialization)
+ */
+export function getOpenAIClient(): OpenAI {
+  if (!_openaiClient) {
+    if (!config.ai.openai.apiKey) {
+      throw new Error(
+        'OPENAI_API_KEY is not configured. Please set it in your environment variables.'
+      )
+    }
+    _openaiClient = new OpenAI({
+      apiKey: config.ai.openai.apiKey,
+    })
+  }
+  return _openaiClient
+}
+
+/**
+ * OpenAI client getter (lazy initialization, for backward compatibility)
+ */
+export const openai = new Proxy({} as OpenAI, {
+  get(_target, prop) {
+    const client = getOpenAIClient()
+    return (client as any)[prop]
+  },
 })
 
 /**

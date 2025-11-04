@@ -22,7 +22,7 @@ export const config = {
   // AI Providers
   ai: {
     openai: {
-      apiKey: process.env.OPENAI_API_KEY!,
+      apiKey: process.env.OPENAI_API_KEY || '',
       defaultModel: 'gpt-4-turbo-preview',
       embeddingModel: 'text-embedding-ada-002',
     },
