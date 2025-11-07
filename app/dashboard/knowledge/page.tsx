@@ -19,6 +19,19 @@ interface Agent {
   name: string;
 }
 
+interface GoogleDoc {
+  id: string;
+  name: string;
+  mimeType: string;
+  modifiedTime: string;
+  webViewLink: string;
+}
+
+interface GoogleStatus {
+  connected: boolean;
+  google_email?: string;
+}
+
 export default function KnowledgeBasePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [documents, setDocuments] = useState<KnowledgeDocument[]>([]);
@@ -30,6 +43,13 @@ export default function KnowledgeBasePage() {
   const [selectedDocument, setSelectedDocument] = useState<KnowledgeDocument | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
+  // Google Docs integration state
+  const [googleStatus, setGoogleStatus] = useState<GoogleStatus>({ connected: false });
+  const [showGoogleDocsModal, setShowGoogleDocsModal] = useState(false);
+  const [googleDocs, setGoogleDocs] = useState<GoogleDoc[]>([]);
+  const [loadingGoogleDocs, setLoadingGoogleDocs] = useState(false);
+  const [importingDocId, setImportingDocId] = useState<string | null>(null);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -44,6 +64,18 @@ export default function KnowledgeBasePage() {
   useEffect(() => {
     fetchDocuments();
     fetchAgents();
+    checkGoogleStatus();
+
+    // Check for OAuth success/error in URL
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('google_connected') === 'true') {
+      setSuccess('Google account connected successfully!');
+      checkGoogleStatus();
+      window.history.replaceState({}, '', window.location.pathname);
+    } else if (params.get('error')) {
+      setError(`Google connection error: ${params.get('error')}`);
+      window.history.replaceState({}, '', window.location.pathname);
+    }
   }, []);
 
   const fetchDocuments = async () => {
@@ -76,6 +108,107 @@ export default function KnowledgeBasePage() {
     } catch (err) {
       console.error('Fetch agents error:', err);
     }
+  };
+
+  const checkGoogleStatus = async () => {
+    try {
+      const response = await fetch('/api/google/oauth/status');
+      const data = await response.json();
+
+      if (data.success) {
+        setGoogleStatus({
+          connected: data.connected,
+          google_email: data.google_email
+        });
+      }
+    } catch (err) {
+      console.error('Check Google status error:', err);
+    }
+  };
+
+  const handleConnectGoogle = () => {
+    window.location.href = '/api/google/oauth/authorize';
+  };
+
+  const handleDisconnectGoogle = async () => {
+    if (!confirm('Are you sure you want to disconnect your Google account?')) {
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/google/oauth/disconnect', {
+        method: 'POST'
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSuccess('Google account disconnected successfully');
+        setGoogleStatus({ connected: false });
+      } else {
+        setError(data.error || 'Failed to disconnect Google account');
+      }
+    } catch (err) {
+      setError('Error disconnecting Google account');
+      console.error('Disconnect Google error:', err);
+    }
+  };
+
+  const fetchGoogleDocs = async () => {
+    try {
+      setLoadingGoogleDocs(true);
+      const response = await fetch('/api/google/docs');
+      const data = await response.json();
+
+      if (data.success) {
+        setGoogleDocs(data.files || []);
+      } else {
+        setError(data.error || 'Failed to fetch Google Docs');
+      }
+    } catch (err) {
+      setError('Error fetching Google Docs');
+      console.error('Fetch Google Docs error:', err);
+    } finally {
+      setLoadingGoogleDocs(false);
+    }
+  };
+
+  const handleImportGoogleDoc = async (docId: string, docName: string) => {
+    try {
+      setImportingDocId(docId);
+      const response = await fetch('/api/google/docs/import', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          document_id: docId,
+          agent_id: formData.agent_id || undefined
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSuccess(`Document "${docName}" imported successfully!`);
+        setShowGoogleDocsModal(false);
+        fetchDocuments();
+      } else {
+        setError(data.error || 'Failed to import document');
+      }
+    } catch (err) {
+      setError('Error importing document');
+      console.error('Import Google Doc error:', err);
+    } finally {
+      setImportingDocId(null);
+    }
+  };
+
+  const openGoogleDocsModal = () => {
+    if (!googleStatus.connected) {
+      setError('Please connect your Google account first');
+      return;
+    }
+    setShowGoogleDocsModal(true);
+    fetchGoogleDocs();
   };
 
   const handleUpload = async (e: React.FormEvent) => {
@@ -219,13 +352,43 @@ export default function KnowledgeBasePage() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Knowledge Base</h1>
           <p className="text-gray-900 mt-1">Manage documents and resources for your AI agent</p>
+          {googleStatus.connected && (
+            <p className="text-sm text-green-900 mt-1">
+              <svg className="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              Connected to Google: {googleStatus.google_email}
+            </p>
+          )}
         </div>
-        <Button onClick={() => setShowUploadModal(true)}>
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
-          Upload Document
-        </Button>
+        <div className="flex gap-2">
+          {googleStatus.connected ? (
+            <>
+              <Button variant="outline" onClick={openGoogleDocsModal}>
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                Import from Google Docs
+              </Button>
+              <Button variant="outline" onClick={handleDisconnectGoogle}>
+                Disconnect Google
+              </Button>
+            </>
+          ) : (
+            <Button variant="outline" onClick={handleConnectGoogle}>
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+              </svg>
+              Connect Google
+            </Button>
+          )}
+          <Button onClick={() => setShowUploadModal(true)}>
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+            Upload Document
+          </Button>
+        </div>
       </div>
 
       {/* Stats */}
@@ -636,6 +799,92 @@ export default function KnowledgeBasePage() {
                   Cancel
                 </Button>
               </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Google Docs Import Modal */}
+      {showGoogleDocsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-4xl max-h-[80vh] flex flex-col">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle>Import from Google Docs</CardTitle>
+                <button
+                  onClick={() => setShowGoogleDocsModal(false)}
+                  className="text-gray-900 hover:text-gray-700"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </CardHeader>
+            <CardContent className="flex-1 overflow-y-auto">
+              {loadingGoogleDocs ? (
+                <div className="flex items-center justify-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                </div>
+              ) : googleDocs.length === 0 ? (
+                <div className="text-center py-12">
+                  <svg className="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <p className="text-gray-900 text-lg">No Google Docs found</p>
+                  <p className="text-gray-900 mt-2">Create some docs in Google Drive to import them here</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {googleDocs.map((doc) => (
+                    <div
+                      key={doc.id}
+                      className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2">
+                            <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                            </svg>
+                            <h3 className="text-lg font-medium text-gray-900">{doc.name}</h3>
+                          </div>
+                          <p className="text-sm text-gray-900 mt-1">
+                            Last modified: {new Date(doc.modifiedTime).toLocaleDateString()}
+                          </p>
+                          <a
+                            href={doc.webViewLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-blue-600 hover:underline mt-1 inline-block"
+                          >
+                            View in Google Docs
+                          </a>
+                        </div>
+                        <Button
+                          onClick={() => handleImportGoogleDoc(doc.id, doc.name)}
+                          disabled={importingDocId === doc.id}
+                          className="ml-4"
+                        >
+                          {importingDocId === doc.id ? (
+                            <>
+                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                              Importing...
+                            </>
+                          ) : (
+                            <>
+                              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                              </svg>
+                              Import
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
