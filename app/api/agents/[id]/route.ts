@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Pool } from 'pg';
 import { Agent, UpdateAgentRequest } from '@/types/agent';
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
-});
+import { db } from '@/lib/db';
 
 // GET /api/agents/[id] - Get a specific agent
 export async function GET(
@@ -18,7 +13,7 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const client = await pool.connect();
+    const client = await db.getClient();
     try {
       const result = await client.query<Agent>(
         `SELECT * FROM agents WHERE id = $1 AND account_id = $2`,
@@ -52,7 +47,7 @@ export async function PATCH(
 
     const body: UpdateAgentRequest = await request.json();
 
-    const client = await pool.connect();
+    const client = await db.getClient();
     try {
       // Verify agent belongs to account
       const existing = await client.query(
@@ -155,7 +150,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const client = await pool.connect();
+    const client = await db.getClient();
     try {
       // Check if this is the default agent
       const agent = await client.query(

@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Pool } from 'pg';
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
-});
+import { db } from '@/lib/db';
 
 // PATCH /api/admin/accounts/[id]/agent-limit - Update agent limit for an account
 export async function PATCH(
@@ -18,7 +13,7 @@ export async function PATCH(
     }
 
     // Verify admin status
-    const client = await pool.connect();
+    const client = await db.getClient();
     try {
       const adminCheck = await client.query(
         'SELECT is_platform_admin FROM accounts WHERE id = $1',
@@ -77,7 +72,7 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const client = await pool.connect();
+    const client = await db.getClient();
     try {
       // Verify admin status
       const adminCheck = await client.query(

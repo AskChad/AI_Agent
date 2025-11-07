@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Pool } from 'pg';
 import { Agent, CreateAgentRequest } from '@/types/agent';
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
-});
+import { db } from '@/lib/db';
 
 // GET /api/agents - List all agents for the authenticated account
 export async function GET(request: NextRequest) {
@@ -15,7 +10,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const client = await pool.connect();
+    const client = await db.getClient();
     try {
       const result = await client.query<Agent>(
         `SELECT * FROM agents
@@ -49,7 +44,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Agent name is required' }, { status: 400 });
     }
 
-    const client = await pool.connect();
+    const client = await db.getClient();
     try {
       // Check agent limit
       const limitCheck = await client.query(
