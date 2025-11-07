@@ -75,4 +75,38 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Override Tailwind with higher specificity - force minimum darkness */
+  .text-gray-600 {
+    color: #374151 !important; /* gray-700 */
+  }
+
+  .text-gray-500 {
+    color: #374151 !important; /* gray-700 */
+  }
+
+  .text-gray-400 {
+    color: #374151 !important; /* gray-700 */
+  }
+
+  .text-gray-700 {
+    color: #1f2937 !important; /* gray-800 - make it darker */
+  }
+
+  /* Make all colored icons darker */
+  .text-blue-600 {
+    color: #1d4ed8 !important; /* blue-700 */
+  }
+
+  .text-purple-600 {
+    color: #7c3aed !important; /* purple-700 */
+  }
+
+  .text-orange-600 {
+    color: #c2410c !important; /* orange-700 */
+  }
+
+  .text-green-600 {
+    color: #15803d !important; /* green-700 */
+  }
 }
