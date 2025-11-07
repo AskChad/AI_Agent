@@ -6,6 +6,9 @@ import { getAuthorizationUrl } from '@/lib/ghl/oauth';
  * Initiate GHL OAuth flow
  * Redirects user to GoHighLevel authorization page
  */
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const supabase = await createClient();

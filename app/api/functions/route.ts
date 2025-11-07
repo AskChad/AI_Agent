@@ -11,6 +11,9 @@ const createFunctionSchema = z.object({
   is_active: z.boolean().default(true),
 });
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const supabase = await createClient();

@@ -9,6 +9,9 @@ const registerSchema = z.object({
   account_name: z.string().min(2, 'Account name is required'),
 });
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

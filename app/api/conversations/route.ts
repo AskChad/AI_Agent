@@ -9,6 +9,9 @@ const createConversationSchema = z.object({
   ghl_contact_id: z.string().optional(),
 });
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const supabase = await createClient();

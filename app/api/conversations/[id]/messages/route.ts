@@ -8,6 +8,9 @@ const sendMessageSchema = z.object({
   metadata: z.record(z.any()).optional(),
 });
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }

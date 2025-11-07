@@ -5,6 +5,9 @@ import { revokeTokens } from '@/lib/ghl/oauth';
 /**
  * Disconnect GoHighLevel integration
  */
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient();

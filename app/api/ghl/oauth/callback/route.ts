@@ -2,6 +2,9 @@ import { createClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { exchangeCodeForToken, storeTokens } from '@/lib/ghl/oauth';
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 /**
  * GHL OAuth callback handler
  * Receives authorization code and exchanges it for access token
@@ -13,17 +16,19 @@ export async function GET(request: NextRequest) {
     const state = searchParams.get('state');
     const error = searchParams.get('error');
 
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || request.nextUrl.origin;
+
     // Handle OAuth error
     if (error) {
       console.error('OAuth error:', error);
       return NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings?ghl_error=${encodeURIComponent(error)}`
+        `${appUrl}/dashboard/settings?ghl_error=${encodeURIComponent(error)}`
       );
     }
 
     if (!code || !state) {
       return NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings?ghl_error=missing_parameters`
+        `${appUrl}/dashboard/settings?ghl_error=missing_parameters`
       );
     }
 
@@ -33,7 +38,7 @@ export async function GET(request: NextRequest) {
       stateData = JSON.parse(Buffer.from(state, 'base64').toString());
     } catch {
       return NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings?ghl_error=invalid_state`
+        `${appUrl}/dashboard/settings?ghl_error=invalid_state`
       );
     }
 
@@ -41,14 +46,14 @@ export async function GET(request: NextRequest) {
     const stateAge = Date.now() - stateData.timestamp;
     if (stateAge > 10 * 60 * 1000) { // 10 minutes
       return NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings?ghl_error=expired_state`
+        `${appUrl}/dashboard/settings?ghl_error=expired_state`
       );
     }
 
     // Get OAuth credentials
     const clientId = process.env.GHL_CLIENT_ID!;
     const clientSecret = process.env.GHL_CLIENT_SECRET!;
-    const redirectUri = process.env.GHL_REDIRECT_URI || `${process.env.NEXT_PUBLIC_APP_URL}/api/ghl/oauth/callback`;
+    const redirectUri = process.env.GHL_REDIRECT_URI || `${appUrl}/api/ghl/oauth/callback`;
 
     // Exchange code for token
     const tokens = await exchangeCodeForToken(code, clientId, clientSecret, redirectUri);
@@ -57,7 +62,7 @@ export async function GET(request: NextRequest) {
     const locationId = tokens.locationId || tokens.companyId;
     if (!locationId) {
       return NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings?ghl_error=no_location_id`
+        `${appUrl}/dashboard/settings?ghl_error=no_location_id`
       );
     }
 
@@ -66,13 +71,14 @@ export async function GET(request: NextRequest) {
 
     // Success! Redirect to settings page
     return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings?ghl_connected=true`
+      `${appUrl}/dashboard/settings?ghl_connected=true`
     );
 
   } catch (error) {
     console.error('OAuth callback error:', error);
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || request.nextUrl.origin;
     return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings?ghl_error=callback_failed`
+      `${appUrl}/dashboard/settings?ghl_error=callback_failed`
     );
   }
 }
