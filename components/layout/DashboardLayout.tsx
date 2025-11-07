@@ -93,15 +93,18 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
         {/* Navigation */}
         <nav className="p-4 space-y-1">
           {navItems.map((item) => {
-            const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
+            // Fix: Dashboard should only be active on exact match, others can use startsWith
+            const isActive = item.href === '/dashboard'
+              ? pathname === '/dashboard'
+              : pathname === item.href || pathname?.startsWith(item.href + '/');
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                   isActive
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-blue-50 text-blue-600 font-semibold'
+                    : 'text-gray-900 hover:bg-gray-100 hover:text-blue-600'
                 }`}
               >
                 {item.icon}
