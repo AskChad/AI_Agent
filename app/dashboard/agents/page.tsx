@@ -7,6 +7,31 @@ import { Modal } from '@/components/ui';
 import { Input, Textarea, Select } from '@/components/ui';
 import { Agent, CreateAgentRequest } from '@/types/agent';
 
+// Model configurations for each provider (2025 latest models)
+const AI_MODELS = {
+  openai: [
+    { value: 'gpt-5', label: 'GPT-5 (Flagship - Best for coding & agentic tasks)', recommended: true },
+    { value: 'gpt-5-mini', label: 'GPT-5 Mini (Faster, cost-effective)' },
+    { value: 'gpt-5-nano', label: 'GPT-5 Nano (Fastest, lowest cost)' },
+    { value: 'gpt-4-1', label: 'GPT-4.1 (Improved coding & instruction following)' },
+    { value: 'gpt-4-1-mini', label: 'GPT-4.1 Mini (Balanced performance)' },
+    { value: 'gpt-4-1-nano', label: 'GPT-4.1 Nano (Low latency)' },
+    { value: 'gpt-4o', label: 'GPT-4o (Widely compatible)' },
+    { value: 'o3', label: 'o3 (Advanced reasoning)' },
+    { value: 'o3-mini', label: 'o3 Mini (Reasoning, cost-effective)' },
+    { value: 'o3-pro', label: 'o3 Pro (Maximum reasoning capability)' }
+  ],
+  anthropic: [
+    { value: 'claude-sonnet-4-5', label: 'Claude Sonnet 4.5 (Best coding model)', recommended: true },
+    { value: 'claude-haiku-4-5', label: 'Claude Haiku 4.5 (Fast & cost-effective)' },
+    { value: 'claude-opus-4-1', label: 'Claude Opus 4.1 (Best for agentic tasks)' },
+    { value: 'claude-sonnet-4', label: 'Claude Sonnet 4 (Hybrid with thinking modes)' },
+    { value: 'claude-opus-4', label: 'Claude Opus 4 (Extended thinking)' },
+    { value: 'claude-sonnet-3-7', label: 'Claude Sonnet 3.7' },
+    { value: 'claude-3-5-sonnet', label: 'Claude 3.5 Sonnet (Previous generation)' }
+  ]
+};
+
 export default function AgentsPage() {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +44,7 @@ export default function AgentsPage() {
     name: '',
     description: '',
     ai_provider: 'openai',
-    ai_model: 'gpt-4',
+    ai_model: 'gpt-5',
     system_prompt: 'You are a helpful AI assistant.',
     context_window: 60,
     enable_function_calling: true
@@ -118,12 +143,28 @@ export default function AgentsPage() {
       name: '',
       description: '',
       ai_provider: 'openai',
-      ai_model: 'gpt-4',
+      ai_model: 'gpt-5',
       system_prompt: 'You are a helpful AI assistant.',
       context_window: 60,
       enable_function_calling: true
     });
     setEditingAgent(null);
+  };
+
+  // Get available models for the selected provider
+  const getAvailableModels = () => {
+    return AI_MODELS[formData.ai_provider as keyof typeof AI_MODELS] || [];
+  };
+
+  // Handle provider change - update model to first available for that provider
+  const handleProviderChange = (provider: 'openai' | 'anthropic') => {
+    const models = AI_MODELS[provider];
+    const defaultModel = models[0]?.value || '';
+    setFormData({
+      ...formData,
+      ai_provider: provider,
+      ai_model: defaultModel
+    });
   };
 
   if (loading) {
@@ -308,13 +349,10 @@ export default function AgentsPage() {
               </label>
               <Select
                 value={formData.ai_provider}
-                onChange={(e) => setFormData({
-                  ...formData,
-                  ai_provider: e.target.value as 'openai' | 'anthropic'
-                })}
+                onChange={(e) => handleProviderChange(e.target.value as 'openai' | 'anthropic')}
                 options={[
                   { value: 'openai', label: 'OpenAI' },
-                  { value: 'anthropic', label: 'Anthropic' }
+                  { value: 'anthropic', label: 'Anthropic (Claude)' }
                 ]}
               />
             </div>
@@ -323,11 +361,17 @@ export default function AgentsPage() {
               <label className="block text-sm font-medium text-gray-900 mb-1">
                 Model
               </label>
-              <Input
+              <Select
                 value={formData.ai_model}
                 onChange={(e) => setFormData({ ...formData, ai_model: e.target.value })}
-                placeholder="gpt-4"
+                options={getAvailableModels().map(model => ({
+                  value: model.value,
+                  label: model.recommended ? `⭐ ${model.label}` : model.label
+                }))}
               />
+              <p className="text-xs text-gray-600 mt-1">
+                ⭐ = Recommended for best performance
+              </p>
             </div>
 
             <div>
