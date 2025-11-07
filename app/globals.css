@@ -49,6 +49,26 @@ body {
   input::placeholder, textarea::placeholder {
     color: var(--text-muted) !important;
   }
+
+  /* Ensure SVG icons and symbols are visible */
+  svg {
+    color: inherit;
+  }
+
+  /* Force minimum text darkness - nothing lighter than gray-700 */
+  .text-gray-600, .text-gray-500, .text-gray-400 {
+    color: var(--text-tertiary) !important; /* gray-700 minimum */
+  }
+
+  /* Ensure button text is always dark */
+  button {
+    color: var(--text-secondary);
+  }
+
+  /* Make links clearly visible */
+  a {
+    color: var(--text-secondary);
+  }
 }
 
 @layer utilities {
