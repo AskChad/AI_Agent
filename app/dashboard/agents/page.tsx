@@ -312,10 +312,11 @@ export default function AgentsPage() {
                   ...formData,
                   ai_provider: e.target.value as 'openai' | 'anthropic'
                 })}
-              >
-                <option value="openai">OpenAI</option>
-                <option value="anthropic">Anthropic</option>
-              </Select>
+                options={[
+                  { value: 'openai', label: 'OpenAI' },
+                  { value: 'anthropic', label: 'Anthropic' }
+                ]}
+              />
             </div>
 
             <div>
