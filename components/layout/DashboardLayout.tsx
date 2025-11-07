@@ -124,7 +124,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
         </nav>
 
         {/* User section */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 space-y-2">
           <div className="flex items-center space-x-3 px-4 py-3">
             <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
               <span className="text-gray-900 font-medium">AD</span>
@@ -134,6 +134,26 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
               <p className="text-xs text-gray-900 truncate">admin@example.com</p>
             </div>
           </div>
+
+          {/* Logout button */}
+          <button
+            onClick={async () => {
+              try {
+                const response = await fetch('/api/auth/logout', { method: 'POST' });
+                if (response.ok) {
+                  window.location.href = '/auth/login';
+                }
+              } catch (error) {
+                console.error('Logout error:', error);
+              }
+            }}
+            className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-900 hover:bg-red-50 hover:text-red-600 transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            <span className="font-medium">Logout</span>
+          </button>
         </div>
       </aside>
 
