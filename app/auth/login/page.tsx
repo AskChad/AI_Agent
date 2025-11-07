@@ -30,7 +30,7 @@ export default function LoginPage() {
             <span className="text-white font-bold text-2xl">AI</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900">AI Chat Agent</h1>
-          <p className="text-gray-600 mt-2">Sign in to your account</p>
+          <p className="text-gray-800 mt-2">Sign in to your account</p>
         </div>
 
         {/* Login Card */}
@@ -83,7 +83,7 @@ export default function LoginPage() {
                   <div className="w-full border-t border-gray-300"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                  <span className="px-2 bg-white text-gray-700">Or continue with</span>
                 </div>
               </div>
 
@@ -103,7 +103,7 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <p className="text-center text-sm text-gray-600 mt-6">
+            <p className="text-center text-sm text-gray-800 mt-6">
               Don&apos;t have an account?{' '}
               <Link href="/auth/register" className="text-blue-600 hover:text-blue-700 font-medium">
                 Sign up
@@ -112,7 +112,7 @@ export default function LoginPage() {
           </CardContent>
         </Card>
 
-        <p className="text-center text-sm text-gray-600 mt-6">
+        <p className="text-center text-sm text-gray-800 mt-6">
           © 2024 AI Chat Agent. All rights reserved.
         </p>
       </div>

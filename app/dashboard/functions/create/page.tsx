@@ -36,7 +36,7 @@ export default function CreateFunctionPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Create Function</h1>
-          <p className="text-gray-600 mt-1">Define a new AI function for your agent</p>
+          <p className="text-gray-800 mt-1">Define a new AI function for your agent</p>
         </div>
         <Button variant="ghost" onClick={() => router.back()}>
           Cancel
@@ -188,7 +188,7 @@ export default function CreateFunctionPage() {
         </CardHeader>
         <CardContent>
           {parameters.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-gray-700">
               <p>No parameters defined yet.</p>
               <p className="text-sm mt-1">Click &quot;Add Parameter&quot; to define function inputs.</p>
             </div>

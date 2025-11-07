@@ -38,7 +38,7 @@ export default function RegisterPage() {
             <span className="text-white font-bold text-2xl">AI</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
-          <p className="text-gray-600 mt-2">Get started with AI Chat Agent</p>
+          <p className="text-gray-800 mt-2">Get started with AI Chat Agent</p>
         </div>
 
         {/* Register Card */}
@@ -120,7 +120,7 @@ export default function RegisterPage() {
                   <div className="w-full border-t border-gray-300"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Or sign up with</span>
+                  <span className="px-2 bg-white text-gray-700">Or sign up with</span>
                 </div>
               </div>
 
@@ -140,7 +140,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <p className="text-center text-sm text-gray-600 mt-6">
+            <p className="text-center text-sm text-gray-800 mt-6">
               Already have an account?{' '}
               <Link href="/auth/login" className="text-blue-600 hover:text-blue-700 font-medium">
                 Sign in
@@ -149,7 +149,7 @@ export default function RegisterPage() {
           </CardContent>
         </Card>
 
-        <p className="text-center text-sm text-gray-600 mt-6">
+        <p className="text-center text-sm text-gray-800 mt-6">
           © 2024 AI Chat Agent. All rights reserved.
         </p>
       </div>

@@ -40,7 +40,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           placeholder={placeholder}
           disabled={isLoading}
           rows={1}
-          className="flex-1 resize-none border border-gray-300 rounded-lg px-4 py-3 text-black placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-500"
+          className="flex-1 resize-none border border-gray-300 rounded-lg px-4 py-3 text-black placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-700"
           style={{ minHeight: '52px', maxHeight: '150px' }}
         />
         <Button
@@ -61,7 +61,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           )}
         </Button>
       </div>
-      <p className="text-xs text-gray-500 mt-2">
+      <p className="text-xs text-gray-700 mt-2">
         Press Enter to send, Shift+Enter for new line
       </p>
     </div>

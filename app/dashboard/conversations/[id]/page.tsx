@@ -80,7 +80,7 @@ export default function ConversationDetailPage({ params }: { params: { id: strin
               </Button>
               <div>
                 <h2 className="font-semibold text-gray-900">John Doe</h2>
-                <p className="text-sm text-gray-600">john@example.com</p>
+                <p className="text-sm text-gray-800">john@example.com</p>
               </div>
               <Badge variant="success" size="sm">Active</Badge>
             </div>
@@ -112,19 +112,19 @@ export default function ConversationDetailPage({ params }: { params: { id: strin
             <h3 className="font-semibold text-gray-900 mb-4">Contact Information</h3>
             <div className="space-y-3">
               <div>
-                <p className="text-xs text-gray-500 uppercase">Name</p>
+                <p className="text-xs text-gray-700 uppercase">Name</p>
                 <p className="text-sm font-medium text-gray-900">John Doe</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500 uppercase">Email</p>
+                <p className="text-xs text-gray-700 uppercase">Email</p>
                 <p className="text-sm font-medium text-gray-900">john@example.com</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500 uppercase">Phone</p>
+                <p className="text-xs text-gray-700 uppercase">Phone</p>
                 <p className="text-sm font-medium text-gray-900">+1 (555) 123-4567</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500 uppercase">Tags</p>
+                <p className="text-xs text-gray-700 uppercase">Tags</p>
                 <div className="flex flex-wrap gap-1 mt-1">
                   <Badge size="sm">Customer</Badge>
                   <Badge size="sm" variant="info">VIP</Badge>
@@ -140,19 +140,19 @@ export default function ConversationDetailPage({ params }: { params: { id: strin
             <h3 className="font-semibold text-gray-900 mb-4">Stats</h3>
             <div className="space-y-3">
               <div className="flex justify-between">
-                <span className="text-sm text-gray-600">Total Messages</span>
+                <span className="text-sm text-gray-800">Total Messages</span>
                 <span className="text-sm font-medium text-gray-900">12</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-gray-600">Duration</span>
+                <span className="text-sm text-gray-800">Duration</span>
                 <span className="text-sm font-medium text-gray-900">2h 15m</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-gray-600">Functions Called</span>
+                <span className="text-sm text-gray-800">Functions Called</span>
                 <span className="text-sm font-medium text-gray-900">5</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-gray-600">Started</span>
+                <span className="text-sm text-gray-800">Started</span>
                 <span className="text-sm font-medium text-gray-900">2h ago</span>
               </div>
             </div>

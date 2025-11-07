@@ -5,7 +5,7 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-600 mt-1">Welcome to your AI Chat Agent dashboard</p>
+        <p className="text-gray-800 mt-1">Welcome to your AI Chat Agent dashboard</p>
       </div>
 
       {/* Stats Grid */}
@@ -14,7 +14,7 @@ export default function DashboardPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Conversations</p>
+                <p className="text-sm font-medium text-gray-800">Total Conversations</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">1,234</p>
                 <p className="text-sm text-green-600 mt-1">+12% from last month</p>
               </div>
@@ -31,9 +31,9 @@ export default function DashboardPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Active Functions</p>
+                <p className="text-sm font-medium text-gray-800">Active Functions</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">28</p>
-                <p className="text-sm text-gray-500 mt-1">3 added this week</p>
+                <p className="text-sm text-gray-700 mt-1">3 added this week</p>
               </div>
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                 <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,7 +48,7 @@ export default function DashboardPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Messages Today</p>
+                <p className="text-sm font-medium text-gray-800">Messages Today</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">567</p>
                 <p className="text-sm text-green-600 mt-1">+8% from yesterday</p>
               </div>
@@ -65,7 +65,7 @@ export default function DashboardPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Avg Response Time</p>
+                <p className="text-sm font-medium text-gray-800">Avg Response Time</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">1.2s</p>
                 <p className="text-sm text-green-600 mt-1">-0.3s improvement</p>
               </div>
@@ -95,7 +95,7 @@ export default function DashboardPage() {
                     </div>
                     <div>
                       <p className="font-medium text-gray-900">User {i}</p>
-                      <p className="text-sm text-gray-500">Last message 2h ago</p>
+                      <p className="text-sm text-gray-700">Last message 2h ago</p>
                     </div>
                   </div>
                   <div className="text-right">
@@ -125,7 +125,7 @@ export default function DashboardPage() {
                 <div key={i} className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-900">{func.name}</span>
-                    <span className="text-sm text-gray-600">{func.calls} calls</span>
+                    <span className="text-sm text-gray-800">{func.calls} calls</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div
@@ -134,7 +134,7 @@ export default function DashboardPage() {
                     ></div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">Success rate</span>
+                    <span className="text-xs text-gray-700">Success rate</span>
                     <span className="text-xs font-medium text-green-600">{func.success}%</span>
                   </div>
                 </div>

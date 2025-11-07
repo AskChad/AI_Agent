@@ -115,11 +115,11 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
           <div className="flex items-center space-x-3 px-4 py-3">
             <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-              <span className="text-gray-600 font-medium">AD</span>
+              <span className="text-gray-800 font-medium">AD</span>
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-gray-900 truncate">Admin User</p>
-              <p className="text-xs text-gray-500 truncate">admin@example.com</p>
+              <p className="text-xs text-gray-700 truncate">admin@example.com</p>
             </div>
           </div>
         </div>

@@ -12,7 +12,7 @@ export default function AnalyticsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Analytics</h1>
-          <p className="text-gray-600 mt-1">Monitor your AI agent performance and usage</p>
+          <p className="text-gray-800 mt-1">Monitor your AI agent performance and usage</p>
         </div>
         <div className="flex gap-3">
           <Select
@@ -39,7 +39,7 @@ export default function AnalyticsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-medium text-gray-600">Total Messages</p>
+              <p className="text-sm font-medium text-gray-800">Total Messages</p>
               <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -49,7 +49,7 @@ export default function AnalyticsPage() {
             <p className="text-3xl font-bold text-gray-900">12,458</p>
             <div className="flex items-center mt-2">
               <span className="text-sm text-green-600 font-medium">+12.5%</span>
-              <span className="text-sm text-gray-500 ml-2">vs last period</span>
+              <span className="text-sm text-gray-700 ml-2">vs last period</span>
             </div>
           </CardContent>
         </Card>
@@ -57,7 +57,7 @@ export default function AnalyticsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-medium text-gray-600">Function Calls</p>
+              <p className="text-sm font-medium text-gray-800">Function Calls</p>
               <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -67,7 +67,7 @@ export default function AnalyticsPage() {
             <p className="text-3xl font-bold text-gray-900">3,842</p>
             <div className="flex items-center mt-2">
               <span className="text-sm text-green-600 font-medium">+8.2%</span>
-              <span className="text-sm text-gray-500 ml-2">vs last period</span>
+              <span className="text-sm text-gray-700 ml-2">vs last period</span>
             </div>
           </CardContent>
         </Card>
@@ -75,7 +75,7 @@ export default function AnalyticsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-medium text-gray-600">Avg Response Time</p>
+              <p className="text-sm font-medium text-gray-800">Avg Response Time</p>
               <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -85,7 +85,7 @@ export default function AnalyticsPage() {
             <p className="text-3xl font-bold text-gray-900">1.2s</p>
             <div className="flex items-center mt-2">
               <span className="text-sm text-green-600 font-medium">-0.3s</span>
-              <span className="text-sm text-gray-500 ml-2">improvement</span>
+              <span className="text-sm text-gray-700 ml-2">improvement</span>
             </div>
           </CardContent>
         </Card>
@@ -93,7 +93,7 @@ export default function AnalyticsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-medium text-gray-600">Success Rate</p>
+              <p className="text-sm font-medium text-gray-800">Success Rate</p>
               <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -103,7 +103,7 @@ export default function AnalyticsPage() {
             <p className="text-3xl font-bold text-gray-900">97.8%</p>
             <div className="flex items-center mt-2">
               <span className="text-sm text-green-600 font-medium">+2.1%</span>
-              <span className="text-sm text-gray-500 ml-2">vs last period</span>
+              <span className="text-sm text-gray-700 ml-2">vs last period</span>
             </div>
           </CardContent>
         </Card>
@@ -116,7 +116,7 @@ export default function AnalyticsPage() {
             <CardTitle>Message Volume</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 flex items-center justify-center text-gray-500">
+            <div className="h-64 flex items-center justify-center text-gray-700">
               Chart visualization (integrate with Recharts)
             </div>
           </CardContent>
@@ -138,7 +138,7 @@ export default function AnalyticsPage() {
                 <div key={i}>
                   <div className="flex justify-between mb-1">
                     <span className="text-sm font-medium text-gray-900">{func.name}</span>
-                    <span className="text-sm text-gray-600">{func.count} calls</span>
+                    <span className="text-sm text-gray-800">{func.count} calls</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div
@@ -163,11 +163,11 @@ export default function AnalyticsPage() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200">
-                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Function</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Calls</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Success Rate</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Avg Time</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Trend</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-800">Function</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-800">Calls</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-800">Success Rate</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-800">Avg Time</th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-800">Trend</th>
                 </tr>
               </thead>
               <tbody>
@@ -180,9 +180,9 @@ export default function AnalyticsPage() {
                 ].map((func, i) => (
                   <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="py-3 px-4 text-sm font-medium text-gray-900">{func.name}</td>
-                    <td className="py-3 px-4 text-sm text-gray-600">{func.calls.toLocaleString()}</td>
-                    <td className="py-3 px-4 text-sm text-gray-600">{func.success}%</td>
-                    <td className="py-3 px-4 text-sm text-gray-600">{func.time}ms</td>
+                    <td className="py-3 px-4 text-sm text-gray-800">{func.calls.toLocaleString()}</td>
+                    <td className="py-3 px-4 text-sm text-gray-800">{func.success}%</td>
+                    <td className="py-3 px-4 text-sm text-gray-800">{func.time}ms</td>
                     <td className="py-3 px-4">
                       {func.trend === 'up' ? (
                         <span className="text-green-600 flex items-center text-sm">
@@ -218,7 +218,7 @@ export default function AnalyticsPage() {
             <div className="space-y-4">
               <div>
                 <div className="flex justify-between mb-2">
-                  <span className="text-sm text-gray-600">OpenAI</span>
+                  <span className="text-sm text-gray-800">OpenAI</span>
                   <span className="text-sm font-medium text-gray-900">245,678 tokens</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
@@ -227,7 +227,7 @@ export default function AnalyticsPage() {
               </div>
               <div>
                 <div className="flex justify-between mb-2">
-                  <span className="text-sm text-gray-600">Anthropic</span>
+                  <span className="text-sm text-gray-800">Anthropic</span>
                   <span className="text-sm font-medium text-gray-900">82,345 tokens</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
@@ -239,7 +239,7 @@ export default function AnalyticsPage() {
                   <span className="text-sm font-medium text-gray-900">Estimated Cost</span>
                   <span className="text-lg font-bold text-gray-900">$124.50</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">For the selected period</p>
+                <p className="text-xs text-gray-700 mt-1">For the selected period</p>
               </div>
             </div>
           </CardContent>
@@ -250,7 +250,7 @@ export default function AnalyticsPage() {
             <CardTitle>Active Conversations</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-48 flex items-center justify-center text-gray-500">
+            <div className="h-48 flex items-center justify-center text-gray-700">
               Time series chart showing active conversations
             </div>
           </CardContent>

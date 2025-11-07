@@ -94,7 +94,7 @@ export default function SettingsPage() {
     <div className="max-w-4xl mx-auto space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="mt-2 text-gray-600">Manage your AI Chat Agent configuration and integrations</p>
+        <p className="mt-2 text-gray-800">Manage your AI Chat Agent configuration and integrations</p>
       </div>
 
       {message && (
@@ -122,7 +122,7 @@ export default function SettingsPage() {
                     <Badge variant="default">Not Connected</Badge>
                   )}
                 </div>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-gray-800 mb-4">
                   Connect your GoHighLevel account to enable bi-directional messaging across all channels:
                   SMS, Email, WhatsApp, Facebook, Instagram, and Google Business.
                 </p>
@@ -183,7 +183,7 @@ export default function SettingsPage() {
 
             <div className="mt-6 p-4 bg-gray-50 rounded-lg">
               <h4 className="font-medium text-sm text-gray-900 mb-2">Setup Instructions:</h4>
-              <ol className="text-sm text-gray-600 space-y-2 list-decimal list-inside">
+              <ol className="text-sm text-gray-800 space-y-2 list-decimal list-inside">
                 <li>Create a marketplace app at <a href="https://marketplace.gohighlevel.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">marketplace.gohighlevel.com</a></li>
                 <li>Configure OAuth with redirect URI: <code className="bg-white px-2 py-1 rounded text-xs">{process.env.NEXT_PUBLIC_APP_URL}/api/ghl/oauth/callback</code></li>
                 <li>Add required scopes: conversations.readonly, conversations.write, conversations/message.readonly, conversations/message.write</li>
@@ -221,7 +221,7 @@ export default function SettingsPage() {
               <input
                 type="number"
                 defaultValue={60}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black placeholder:text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
 
@@ -255,7 +255,7 @@ export default function SettingsPage() {
               <input
                 type="text"
                 placeholder="My Company"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black placeholder:text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
 
