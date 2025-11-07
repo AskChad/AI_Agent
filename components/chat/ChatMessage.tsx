@@ -99,7 +99,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
           )}
 
           {/* Timestamp */}
-          <span className={`text-xs text-gray-700 mt-1 ${isUser ? 'text-right' : 'text-left'}`}>
+          <span className={`text-xs text-gray-800 mt-1 ${isUser ? 'text-right' : 'text-left'}`}>
             {new Date(message.timestamp).toLocaleTimeString()}
           </span>
         </div>

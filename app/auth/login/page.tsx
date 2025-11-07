@@ -59,11 +59,11 @@ export default function LoginPage() {
                 <label className="flex items-center">
                   <input
                     type="checkbox"
-                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className="rounded border-gray-300 text-blue-800 focus:ring-blue-500"
                   />
-                  <span className="ml-2 text-sm text-gray-700">Remember me</span>
+                  <span className="ml-2 text-sm text-gray-800">Remember me</span>
                 </label>
-                <Link href="/auth/forgot-password" className="text-sm text-blue-600 hover:text-blue-700">
+                <Link href="/auth/forgot-password" className="text-sm text-blue-800 hover:text-blue-700">
                   Forgot password?
                 </Link>
               </div>
@@ -83,7 +83,7 @@ export default function LoginPage() {
                   <div className="w-full border-t border-gray-300"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-700">Or continue with</span>
+                  <span className="px-2 bg-white text-gray-800">Or continue with</span>
                 </div>
               </div>
 
@@ -105,7 +105,7 @@ export default function LoginPage() {
 
             <p className="text-center text-sm text-gray-800 mt-6">
               Don&apos;t have an account?{' '}
-              <Link href="/auth/register" className="text-blue-600 hover:text-blue-700 font-medium">
+              <Link href="/auth/register" className="text-blue-800 hover:text-blue-700 font-medium">
                 Sign up
               </Link>
             </p>

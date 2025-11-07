@@ -103,8 +103,8 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
                 href={item.href}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                   isActive
-                    ? 'bg-blue-50 text-blue-600 font-semibold'
-                    : 'text-gray-900 hover:bg-gray-100 hover:text-blue-600'
+                    ? 'bg-blue-50 text-blue-800 font-semibold'
+                    : 'text-gray-900 hover:bg-gray-100 hover:text-blue-800'
                 }`}
               >
                 {item.icon}
@@ -122,7 +122,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-gray-900 truncate">Admin User</p>
-              <p className="text-xs text-gray-700 truncate">admin@example.com</p>
+              <p className="text-xs text-gray-800 truncate">admin@example.com</p>
             </div>
           </div>
         </div>

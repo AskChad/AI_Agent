@@ -105,7 +105,7 @@ export default function ConversationsPage() {
         <Card>
           <CardContent className="p-4">
             <p className="text-sm text-gray-800">Active</p>
-            <p className="text-2xl font-bold text-green-600 mt-1">
+            <p className="text-2xl font-bold text-green-800 mt-1">
               {mockConversations.filter((c) => c.status === 'active').length}
             </p>
           </CardContent>
@@ -121,7 +121,7 @@ export default function ConversationsPage() {
         <Card>
           <CardContent className="p-4">
             <p className="text-sm text-gray-800">Unread</p>
-            <p className="text-2xl font-bold text-blue-600 mt-1">
+            <p className="text-2xl font-bold text-blue-800 mt-1">
               {mockConversations.reduce((sum, c) => sum + c.unread_count, 0)}
             </p>
           </CardContent>
@@ -193,13 +193,13 @@ export default function ConversationsPage() {
                         )}
                       </div>
                       <p className="text-sm text-gray-800 mb-1">{conversation.contact_email}</p>
-                      <p className="text-sm text-gray-700 truncate">{conversation.last_message}</p>
+                      <p className="text-sm text-gray-800 truncate">{conversation.last_message}</p>
                     </div>
                   </div>
 
                   {/* Metadata */}
                   <div className="text-right ml-4 flex-shrink-0">
-                    <p className="text-sm text-gray-700">{formatTime(conversation.last_message_time)}</p>
+                    <p className="text-sm text-gray-800">{formatTime(conversation.last_message_time)}</p>
                     <p className="text-xs text-gray-800 mt-1">{conversation.message_count} messages</p>
                   </div>
                 </div>

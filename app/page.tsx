@@ -33,7 +33,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-5xl font-bold text-gray-900 mb-6">
             Intelligent AI Chat Agent for
-            <span className="text-blue-600"> GoHighLevel</span>
+            <span className="text-blue-800"> GoHighLevel</span>
           </h2>
           <p className="text-xl text-gray-800 mb-8 max-w-3xl mx-auto">
             Automate conversations across SMS, Email, WhatsApp, Facebook, Instagram, and Google Business.
@@ -48,7 +48,7 @@ export default function Home() {
             </Link>
             <Link
               href="/dashboard"
-              className="px-8 py-4 bg-white text-gray-700 rounded-lg hover:bg-gray-50 font-semibold text-lg transition-colors border-2 border-gray-200"
+              className="px-8 py-4 bg-white text-gray-800 rounded-lg hover:bg-gray-50 font-semibold text-lg transition-colors border-2 border-gray-200"
             >
               View Dashboard
             </Link>
@@ -190,7 +190,7 @@ export default function Home() {
           </p>
           <Link
             href="/auth/register"
-            className="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg hover:bg-gray-100 font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
+            className="inline-block px-8 py-4 bg-white text-blue-800 rounded-lg hover:bg-gray-100 font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
           >
             Get Started Now
           </Link>
@@ -203,7 +203,7 @@ export default function Home() {
           <p className="text-gray-800 mb-4">
             AI Chat Agent - Intelligent conversational AI for GoHighLevel
           </p>
-          <div className="flex justify-center gap-6 text-sm text-gray-700">
+          <div className="flex justify-center gap-6 text-sm text-gray-800">
             <Link href="/dashboard" className="hover:text-gray-300">Dashboard</Link>
             <Link href="/auth/login" className="hover:text-gray-300">Login</Link>
             <a href="https://github.com/AskChad/AI_Agent" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">GitHub</a>

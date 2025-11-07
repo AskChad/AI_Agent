@@ -112,19 +112,19 @@ export default function ConversationDetailPage({ params }: { params: { id: strin
             <h3 className="font-semibold text-gray-900 mb-4">Contact Information</h3>
             <div className="space-y-3">
               <div>
-                <p className="text-xs text-gray-700 uppercase">Name</p>
+                <p className="text-xs text-gray-800 uppercase">Name</p>
                 <p className="text-sm font-medium text-gray-900">John Doe</p>
               </div>
               <div>
-                <p className="text-xs text-gray-700 uppercase">Email</p>
+                <p className="text-xs text-gray-800 uppercase">Email</p>
                 <p className="text-sm font-medium text-gray-900">john@example.com</p>
               </div>
               <div>
-                <p className="text-xs text-gray-700 uppercase">Phone</p>
+                <p className="text-xs text-gray-800 uppercase">Phone</p>
                 <p className="text-sm font-medium text-gray-900">+1 (555) 123-4567</p>
               </div>
               <div>
-                <p className="text-xs text-gray-700 uppercase">Tags</p>
+                <p className="text-xs text-gray-800 uppercase">Tags</p>
                 <div className="flex flex-wrap gap-1 mt-1">
                   <Badge size="sm">Customer</Badge>
                   <Badge size="sm" variant="info">VIP</Badge>

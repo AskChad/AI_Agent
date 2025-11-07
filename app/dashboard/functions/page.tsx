@@ -170,7 +170,7 @@ export default function FunctionsPage() {
         <Card>
           <CardContent className="p-4">
             <p className="text-sm text-gray-800">Active</p>
-            <p className="text-2xl font-bold text-green-600 mt-1">
+            <p className="text-2xl font-bold text-green-800 mt-1">
               {mockFunctions.filter(f => f.is_enabled).length}
             </p>
           </CardContent>
@@ -186,7 +186,7 @@ export default function FunctionsPage() {
         <Card>
           <CardContent className="p-4">
             <p className="text-sm text-gray-800">Avg Success Rate</p>
-            <p className="text-2xl font-bold text-green-600 mt-1">
+            <p className="text-2xl font-bold text-green-800 mt-1">
               {Math.round(mockFunctions.reduce((sum, f) => sum + f.success_rate, 0) / mockFunctions.length)}%
             </p>
           </CardContent>
@@ -214,15 +214,15 @@ export default function FunctionsPage() {
                   {/* Stats Grid */}
                   <div className="grid grid-cols-3 gap-6">
                     <div>
-                      <p className="text-xs text-gray-700 uppercase">Calls</p>
+                      <p className="text-xs text-gray-800 uppercase">Calls</p>
                       <p className="text-lg font-semibold text-gray-900">{func.call_count}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-700 uppercase">Success Rate</p>
+                      <p className="text-xs text-gray-800 uppercase">Success Rate</p>
                       <p className="text-lg font-semibold text-gray-900">{func.success_rate}%</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-700 uppercase">Avg Time</p>
+                      <p className="text-xs text-gray-800 uppercase">Avg Time</p>
                       <p className="text-lg font-semibold text-gray-900">{func.avg_execution_time}ms</p>
                     </div>
                   </div>
