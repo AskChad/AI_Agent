@@ -208,7 +208,7 @@ export default function SettingsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Default AI Provider
               </label>
-              <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+              <select className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 <option value="openai">OpenAI (GPT-4)</option>
                 <option value="anthropic">Anthropic (Claude)</option>
               </select>
@@ -221,7 +221,7 @@ export default function SettingsPage() {
               <input
                 type="number"
                 defaultValue={60}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
 
@@ -255,7 +255,7 @@ export default function SettingsPage() {
               <input
                 type="text"
                 placeholder="My Company"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
 
@@ -263,7 +263,7 @@ export default function SettingsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Time Zone
               </label>
-              <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+              <select className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 <option value="America/New_York">Eastern Time (ET)</option>
                 <option value="America/Chicago">Central Time (CT)</option>
                 <option value="America/Denver">Mountain Time (MT)</option>
